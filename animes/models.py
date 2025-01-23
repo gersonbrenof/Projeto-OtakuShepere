@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 class Usuarios(models.Model):
     usuario = models.OneToOneField(User, related_name="usuarios", on_delete=models.CASCADE)
     nomeUsuarios = models.CharField( max_length=100)
@@ -8,13 +9,23 @@ class Usuarios(models.Model):
     
     def __str__(self):
         return self.email
-    
+
+    def save(self, *args, **kwargs):
+        # Garantir que o username do User seja igual ao email
+        self.usuario.username = self.email
+        self.usuario.save()
+        super().save(*args, **kwargs)
     
 class Perfil(models.Model):
     fotoPerfil = models.ImageField(upload_to='imagem_perfil')
     favortios = models.IntegerField(default=0)
     usuario = models.ForeignKey(Usuarios, related_name="perfil", on_delete=models.CASCADE)
-
+    # Sinal para criar o perfil automaticamente
+@receiver(post_save, sender=Usuarios)
+def criar_perfil(sender, instance, created, **kwargs):
+    if created:
+        Perfil.objects.create(usuario=instance)
+    
 class Obras(models.Model):
     TIPO_OBRA_CHOICES = [
         ('anime', 'Anime'),

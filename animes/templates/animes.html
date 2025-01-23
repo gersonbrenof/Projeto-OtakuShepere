@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Otaku Shephere{% endblock %}
+{% block title %}Melhores anime de Romance{% endblock %}
 
 {% block content %}
 <div class="container">
   <div class="row ">
     <div class="col-sm-6">
       <!-- Conteúdo da coluna aqui -->
-      {% for anime in obras %}
+      {% for anime in listanime %}
       <h2> {{anime.titulo}}</h2>
       <img 
       src="{{ anime.imagemCapa.url }}" 
