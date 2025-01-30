@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastrar</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome (Ícones) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("https://files.passeidireto.com/e7bed11f-b15b-4013-a2f5-c3d8407073ce/e7bed11f-b15b-4013-a2f5-c3d8407073ce.jpeg");
+            background-size: cover; /* Garante que a imagem cubra todo o corpo */
+            background-position: center; /* Centraliza a imagem no corpo */
+            background-attachment: fixed; /* Mantém a imagem fixa enquanto a página é rolada */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
+        }
+
+        .card-title {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ced4da;
+            background-color: #f8f9fa;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus, .form-group button:focus {
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            border-color: #007bff;
+        }
+
+        .form-group button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .social-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .social-buttons a {
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+        }
+
+        .social-buttons a:hover {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h2 class="card-title text-center">Crie sua conta</h2>
+            <form method="POST">
+                {% csrf_token %}
+                
+                <!-- Formulário de Cadastro -->
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+
+                <!-- Botão de Cadastro -->
+                <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
+            </form>
+
+            <!-- Link para Login -->
+            <p class="text-center mt-3">
+                Já tem uma conta? <a href="{% url 'login' %}">Faça login</a>
+            </p>
+
+            <!-- Botões Sociais (Exemplo para Futuro) -->
+            <div class="social-buttons">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-google"></a>
+                <a href="#" class="fab fa-twitter"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap e Font Awesome JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

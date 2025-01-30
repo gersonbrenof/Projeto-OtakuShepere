@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Meu Perfil{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-lg p-4 mx-auto" style="max-width: 500px;">
+        <div class="text-center">
+            {% if usuario.perfil.fotoPerfil %}
+                <img src="{{ usuario.perfil.fotoPerfil.url }}" alt="Foto de Perfil" class="img-fluid rounded-circle" width="150">
+            {% else %}
+                <img src="https://via.placeholder.com/150" alt="Foto de Perfil Padrão" class="img-fluid rounded-circle">
+            {% endif %}
+            <h2 class="mt-3">{{ usuario.nomeUsuarios }}</h2>
+            <p class="text-muted">{{ usuario.email }}</p>
+        </div>
+
+        <hr>
+
+        <div class="text-center">
+            <button class="btn btn-primary"><i class="fas fa-edit"></i> Editar Perfil</button>
+            <button class="btn btn-secondary"><i class="fas fa-cog"></i> Configurações</button>
+        </div>
+    </div>
+</div>
+
+<!-- Inclui os ícones do FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+{% endblock %}
