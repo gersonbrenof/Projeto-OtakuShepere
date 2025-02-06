@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Melhores anime de Romance{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row ">
+    <div class="col-sm-6">
+      <!-- Conteúdo da coluna aqui -->
+      {% for anime in listanime %}
+      <h2> {{anime.titulo}}</h2>
+      <img 
+      src="{{ anime.imagemCapa.url }}" 
+      alt="Capa" 
+      style="max-width: 40rem;"
+    />
+      <p>
+        <span style="color: blue;"> Genero: </span>{{anime.genero}}<br> 
+        <span style="color: blue;"> Ano: </span> {{anime.anoLancamento}}<br>
+        <span style="color: blue;"> avalicão Media: </span> {{anime.avalicaoMedia}} <br>
+        <span style="color: blue;"> Tipo da Obrar: </span> {{anime.tipoObra}} <br>
+        <span style="color: blue;"> Sinopse: </span> {{anime.sinopse}}
+
+     
+        <br><br>
+          
+      </p>
+  </div>
+  
+
+
+
+     
+ 
+ <div>
+    {% endfor %}
+{% endblock %}  
+      
+       

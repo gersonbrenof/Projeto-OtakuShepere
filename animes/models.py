@@ -39,6 +39,7 @@ class Obras(models.Model):
     anoLancamento = models.CharField(max_length=15)
     avalicaoMedia = models.IntegerField(default=0)
     imagemCapa = models.ImageField(upload_to='imagem_capa')
+    avaliacao = models.IntegerField(default=0)
     tipoObra = models.CharField(max_length=10, choices=TIPO_OBRA_CHOICES)
     def __str__(self):
         return self.titulo 

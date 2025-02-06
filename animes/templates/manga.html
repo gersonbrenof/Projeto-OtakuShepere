@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Manga Disponivel{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row ">
+    <div class="col-sm-6">
+      <!-- Conteúdo da coluna aqui -->
+      {% for manga in listanime %}
+      <h2> {{anime.titulo}}</h2>
+      <img 
+      src="{{ manga.imagemCapa.url }}" 
+      alt="Capa" 
+      style="max-width: 40rem;"
+    />
+      <p>
+        <span style="color: blue;"> Genero: </span>{{manga.genero}}<br> 
+        <span style="color: blue;"> Ano: </span> {{manga.anoLancamento}}<br>
+        <span style="color: blue;"> avalicão Media: </span> {{manga.avalicaoMedia}} <br>
+        <span style="color: blue;"> Tipo da Obrar: </span> {{manga.tipoObra}} <br>
+        <span style="color: blue;"> Sinopse: </span> {{manga.sinopse}}
+
+     
+        <br><br>
+          
+      </p>
+  </div>
+  
+
+
+
+     
+ 
+ <div>
+    {% endfor %}
+{% endblock %}  
+      
+       

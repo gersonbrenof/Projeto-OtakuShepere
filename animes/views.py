@@ -5,6 +5,7 @@ from .forms import UsuarioRegistrarForms, UsuarioEntrarForm
 from .models import Obras, Anime, User, Usuarios, Perfil
 from django.views.generic.edit import FormView
 from django.db.models import Q
+from django.shortcuts import  redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -27,13 +28,15 @@ class ManwarView(TemplateView):
     template_name = "manwar.html"
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
-        context['listamanwar'] = Obras.objects.filter (Q(tipoObra__icontains = 'manwar'))
+        context['listanime'] = Obras.objects.filter (Q(tipoObra__icontains = 'manwar'))
+        return context
 
 class MangaView(TemplateView):
     template_name = "manga.html"
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
-        context['listamanga'] = Obras.objects.filter (Q(tipoObra__icontains = 'manga'))
+        context['listanime'] = Obras.objects.filter (Q(tipoObra__icontains = 'manga'))
+        return context
         
 class PesquisaView(TemplateView):
     template_name = "pesquisar.html"
@@ -104,3 +107,8 @@ def perfil_view(request):
     usuario = request.user.usuarios
     perfil = usuario.perfil # para acessa o perfil recionado
     return render(request, 'perfil.html', {'usuario': usuario, 'perfil': perfil})
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('login')
